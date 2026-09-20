@@ -221,26 +221,35 @@ a { color: var(--accent); }
 
 .hero { position: relative; background: var(--tan); }
 
+/* Phone first: the photo is too narrow to hold copy over it, so stack them.
+   The tan band is the photo's own background, so the seam is invisible. */
 .hero-img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: 80% center;
 }
-[dir="rtl"] .hero-img { transform: scaleX(-1); object-position: 20% center; }
+/* Mirroring already moves the subject to the other side — don't re-aim on top of it. */
+[dir="rtl"] .hero-img { transform: scaleX(-1); }
 
 .hero-inner {
   position: relative;
-  padding-block: 96px;
+  padding-block: 40px 56px;
   max-width: 640px;
   margin-inline: 0;
   color: var(--hero-ink);
-  /* keeps the copy readable over the photo's lighter edge */
-  text-shadow: 0 1px 2px rgba(241, 233, 224, 0.5);
 }
-@media (min-width: 900px) { .hero-inner { padding-block: 140px; } }
+
+/* Room for the copy beside the subject: go back to one layer. */
+@media (min-width: 900px) {
+  .hero-img { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; }
+  .hero-inner {
+    padding-block: 140px;
+    /* keeps the copy readable over the photo's lighter edge */
+    text-shadow: 0 1px 2px rgba(241, 233, 224, 0.5);
+  }
+}
 
 .hero-inner .kicker { color: var(--hero-ink); opacity: 0.75; }
 .hero-inner h1 { margin-bottom: 8px; }
