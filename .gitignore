@@ -1,0 +1,19 @@
+# Local agent settings — machine-specific, not project config
+.claude/
+
+# Knowledge-graph build output, regenerate with /graphify
+graphify-out/
+
+# OS cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Internal working documents — kept local, not published
+claude.md
+client.md
+design.md
+
+# Stock originals and mockups the page never loads (~4MB)
+assets/servises and photos/
+assets/uiux website design.jpg
