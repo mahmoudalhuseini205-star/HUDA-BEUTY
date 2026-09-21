@@ -8,10 +8,13 @@ const DEFAULT_LANG = 'tr';                     // Turkish default, no auto-detec
 
 // Same order as i18n[lang].services
 const SERVICE_IMAGES = [
-  'svc-bridal', 'svc-cut', 'svc-color', 'svc-highlights', 'svc-keratin',
+  'svc-bridal', 'svc-cut', 'svc-color', 'svc-keratin',
   'svc-blowdry', 'svc-updo', 'svc-care', 'svc-makeup'
 ];
-const GALLERY_IMAGES = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6'];
+const GALLERY_IMAGES = [
+  'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9',
+  'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18'
+];
 
 const waLink = (text) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 
@@ -90,16 +93,26 @@ function renderServices(t) {
           ${featured ? '<span class="service-eyebrow"></span>' : ''}
           <span class="service-name"></span>
           <span class="service-desc"></span>
+          ${svc.items ? '<span class="service-items"></span>' : ''}
         </span>
         <span class="service-arrow" aria-hidden="true">&rarr;</span>
       </a>`;
     li.querySelector('img').alt = svc.alt;
     li.querySelector('.service-name').textContent = svc.name;
     li.querySelector('.service-desc').textContent = svc.desc;
+    if (svc.items) li.querySelector('.service-items').textContent = svc.items.join(' · ');
     if (featured) li.querySelector('.service-eyebrow').textContent = t['services.featured'];
     list.appendChild(li);
 
-    select.add(new Option(svc.name, svc.name));
+    // A service with sub-services books the sub-service, not the category.
+    if (svc.items) {
+      const group = document.createElement('optgroup');
+      group.label = svc.name;
+      svc.items.forEach((item) => group.appendChild(new Option(item, `${svc.name} — ${item}`)));
+      select.add(group);
+    } else {
+      select.add(new Option(svc.name, svc.name));
+    }
   });
 
   observeReveals();
@@ -111,13 +124,17 @@ function renderGallery(t) {
   GALLERY_IMAGES.forEach((name, i) => {
     const li = document.createElement('li');
     li.className = 'reveal';
+    const figure = document.createElement('figure');
     const img = document.createElement('img');
     img.src = `assets/img/${name}.jpg`;
-    img.alt = t.gallery[i];
+    img.alt = t.gallery[i].alt;
     img.loading = 'lazy';
     img.width = 800;
     img.height = 800;
-    li.appendChild(img);
+    const caption = document.createElement('figcaption');
+    caption.textContent = t.gallery[i].cap;
+    figure.append(img, caption);
+    li.appendChild(figure);
     grid.appendChild(li);
   });
   observeReveals();

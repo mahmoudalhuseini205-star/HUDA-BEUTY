@@ -317,6 +317,13 @@ a { color: var(--accent); }
   font-size: 0.9375rem;
 }
 
+.service-items {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+}
+
 .service-arrow {
   color: var(--ink-soft);
   font-size: 1.25rem;
@@ -372,7 +379,9 @@ a { color: var(--accent); }
 }
 @media (min-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+.gallery-grid figure { margin: 0; }
 .gallery-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
+.gallery-grid figcaption { font-size: 0.875rem; color: var(--ink-soft); padding-top: 8px; text-align: start; }
 
 /* Booking ----------------------------------------------------------------- */
 

@@ -9,7 +9,7 @@ const i18n = {
     langToggleText: 'عربي',
 
     'meta.title': 'Huda Görgel Saç — Kuaför & Gelin Güzelliği',
-    'meta.description': 'Gelin hazırlığında uzman kuaför. Saç kesimi, boyama, röfle, keratin bakımı ve özel gün saçı. Randevu için WhatsApp.',
+    'meta.description': 'Gelin hazırlığında uzman kuaför. Saç kesim ve tasarım, saç renklendirme, keratin bakımı, özel gün saçı ve profesyonel makyaj. Randevu için WhatsApp.',
 
     'nav.services': 'Hizmetler',
     'nav.bridal': 'Gelin',
@@ -36,14 +36,13 @@ const i18n = {
 
     services: [
       { name: 'Gelin Hazırlığı', desc: 'Saç, makyaj ve prova dahil, gününüze özel eksiksiz hazırlık.', alt: 'İncili tokalarla toplanmış gelin saçı' },
-      { name: 'Saç Kesimi', desc: 'Yüz hatlarınıza ve saç dokunuza göre şekillendirilmiş kesim.', alt: 'Kuaför makasla ıslak saç kesiyor' },
-      { name: 'Saç Boyama', desc: 'Kapatma, ton değişimi ve doğal görünümlü renkler.', alt: 'Küllü sarı dalgalı boyalı saç' },
-      { name: 'Röfle / Balyaj', desc: 'Yumuşak geçişli ışıltı, folyo veya serbest teknikle.', alt: 'Folyo ile röfle uygulaması' },
+      { name: 'Saç Kesim ve Tasarım', desc: 'Yüz hatlarınıza ve saç dokunuza göre tasarlanmış, bakımı kolay kesimler.', alt: 'Katlı kesimle şekillendirilmiş omuz hizası kahverengi saç', items: ['Türk Stili Saç Kesimi', 'Suriye Stili Saç Kesimi'] },
+      { name: 'Saç Renklendirme ve Boyama', desc: 'Saçınızı yormadan, cilt tonunuza yakışan ton ve geçişler.', alt: 'Küllü sarı tonlarda röfleli dalgalı saç', items: ['Röfle', 'Ombre', 'Sombre', 'Sarı Hatlı'] },
       { name: 'Keratin Bakımı', desc: 'Elektriklenmeyi azaltan, parlaklık veren düzleştirici bakım.', alt: 'Yıkama koltuğunda saç bakımı' },
       { name: 'Fön & Şekillendirme', desc: 'Hacimli, uzun süre kalıcı günlük fön ve şekil.', alt: 'Katlı kesim, hacimli fön' },
       { name: 'Topuz / Özel Gün Saçı', desc: 'Nişan, kına ve davetler için zarif topuz ve örgüler.', alt: 'Çiçekli tokalarla yapılmış topuz' },
       { name: 'Saç Bakımı / Maske', desc: 'Yıpranmış saça derinlemesine onarım ve nem.', alt: 'Saça bakım maskesi uygulanıyor' },
-      { name: 'Makyaj', desc: 'Gündüz ve gece için doğal ya da belirgin makyaj.', alt: 'Göz makyajı uygulanıyor' }
+      { name: 'Profesyonel Makyaj', desc: 'Gününüze ve ışığa göre hazırlanan, gün boyu kalıcı makyaj.', alt: 'Taçlı, porselen görünümlü pürüzsüz makyaj', items: ['Gelin Makyajı', 'Porselen Makyaj', 'Gece / Nişan Makyajı', 'Günlük / Soft Makyaj'] }
     ],
 
     'bridal.kicker': 'Uzmanlık alanımız',
@@ -55,12 +54,24 @@ const i18n = {
     'gallery.title': 'Galeri',
     'gallery.sub': 'Salonumuzdan çalışmalar.',
     gallery: [
-      'Düz, dalgalı ve bukleli üç farklı saç dokusu',
-      'Parlak, dalgalı kahverengi saç',
-      'Balyaj sonrası taranan dalgalı saç',
-      'Kuaför malzemeleri: makas, fırça, renk kartelası',
-      'Duvaklı, örgülü taç model gelin saçı',
-      'Uzun, düzleştirilmiş parlak saç'
+      { cap: 'Saç Bakımı / Maske', alt: 'Düz, dalgalı ve bukleli üç farklı saç dokusu' },
+      { cap: 'Fön & Şekillendirme', alt: 'Parlak, dalgalı kahverengi saç' },
+      { cap: 'Saç Renklendirme ve Boyama', alt: 'Kuaför, uçları karamel tonlu bukleli saçı tarıyor' },
+      { cap: 'Saç Renklendirme ve Boyama', alt: 'Kuaför malzemeleri: makas, fırça, renk kartelası' },
+      { cap: 'Gelin Hazırlığı', alt: 'Duvaklı, örgülü taç model gelin saçı' },
+      { cap: 'Keratin Bakımı', alt: 'Uzun, düzleştirilmiş parlak saç' },
+      { cap: 'Türk Stili Saç Kesimi', alt: 'Karamel ışıltılı, uzun katlı kesim' },
+      { cap: 'Suriye Stili Saç Kesimi', alt: 'Yumuşak hacimli, açık kahve katlı kesim' },
+      { cap: 'Suriye Stili Saç Kesimi', alt: 'İçe doğru fönlenmiş, hacimli katlı kesim' },
+      { cap: 'Röfle', alt: 'Küllü sarı röflelerle dalgalanmış uzun saç' },
+      { cap: 'Ombre', alt: 'Koyu kökten açık uçlara geçen ombre saç' },
+      { cap: 'Sombre', alt: 'Yumuşak geçişli, bej tonlu sombre dalgalar' },
+      { cap: 'Sarı Hatlı', alt: 'Yüzü çevreleyen sarı hatlarla açılmış saç' },
+      { cap: 'Gelin Makyajı', alt: 'Taçlı ve duvaklı gelin, ışıltılı göz makyajı' },
+      { cap: 'Gelin Makyajı', alt: 'İncili topuz ve nude tonlarda gelin makyajı' },
+      { cap: 'Porselen Makyaj', alt: 'Pürüzsüz, mat porselen ten görünümlü makyaj' },
+      { cap: 'Gece / Nişan Makyajı', alt: 'Bronz gölgeli, belirgin gece makyajı' },
+      { cap: 'Günlük / Soft Makyaj', alt: 'Doğal tonlarda hafif günlük makyaj' }
     ],
 
     'booking.title': 'Randevu Al',
@@ -86,6 +97,8 @@ const i18n = {
     'contact.follow': 'Takip Edin',
     'contact.instagram': 'Instagram\'da takip edin',
     'contact.tiktok': 'TikTok\'ta takip edin',
+    'contact.facebook': 'Facebook\'ta takip edin',
+    'contact.email': 'E-posta gönderin',
 
     'footer.rights': 'Tüm hakları saklıdır.',
     'footer.logoAlt': 'Huda Görgel Saç logosu',
@@ -103,7 +116,7 @@ const i18n = {
     langToggleText: 'Türkçe',
 
     'meta.title': 'هدى كولكل للشعر — تصفيف وتجهيز عرائس',
-    'meta.description': 'صالون متخصص بتجهيز العرائس. قص وصبغ الشعر، هايلايت، علاج بالكيراتين وتسريحات المناسبات. احجزي عبر واتساب.',
+    'meta.description': 'صالون متخصص بتجهيز العرائس. قص وتصميم الشعر، تلوين وصبغ، علاج بالكيراتين، تسريحات المناسبات ومكياج احترافي. احجزي عبر واتساب.',
 
     'nav.services': 'الخدمات',
     'nav.bridal': 'العرائس',
@@ -130,14 +143,13 @@ const i18n = {
 
     services: [
       { name: 'تجهيز العرائس', desc: 'تجهيز كامل ليومك يشمل الشعر والمكياج والبروفة.', alt: 'تسريحة عروس مرفوعة مزيّنة باللؤلؤ' },
-      { name: 'قص الشعر', desc: 'قصّة مدروسة تناسب ملامح وجهك وطبيعة شعرك.', alt: 'مصففة تقص شعراً مبللاً بالمقص' },
-      { name: 'صبغ الشعر', desc: 'تغطية الشيب وتغيير اللون بدرجات طبيعية.', alt: 'شعر مصبوغ بدرجة أشقر رمادي متموج' },
-      { name: 'هايلايت / باليج', desc: 'لمعة بتدرّج ناعم، بالحيدة أو بتقنية الباليج.', alt: 'تطبيق الهايلايت بورق الألمنيوم' },
+      { name: 'قص وتصميم الشعر', desc: 'قصّة مصمّمة على ملامح وجهك وطبيعة شعرك، وسهلة العناية بين موعد وآخر.', alt: 'شعر بني بطول الكتف بقصّة مدرّجة', items: ['قصة على الطريقة التركية', 'قصة على الطريقة السورية'] },
+      { name: 'تلوين وصبغ الشعر', desc: 'درجات وتدرّجات تليق بلون بشرتك، دون إرهاق للشعر.', alt: 'شعر متموج بخصل أشقر رمادي', items: ['هايلايت', 'أومبريه', 'سومبريه', 'خصل شقراء'] },
       { name: 'علاج بالكيراتين', desc: 'علاج مُنعّم يقلّل التطاير ويمنح الشعر لمعاناً.', alt: 'غسل الشعر وعنايته على كرسي الصالون' },
       { name: 'تجفيف وتصفيف', desc: 'سشوار بكثافة وثبات يدوم طويلاً.', alt: 'قصّة مدرجة مع سشوار بكثافة' },
       { name: 'تسريحات المناسبات', desc: 'تسريحات وضفائر أنيقة للخطوبة والحنّة والحفلات.', alt: 'تسريحة مرفوعة بمشابك على شكل زهور' },
       { name: 'حمّامات كريم / ماسك', desc: 'ترطيب وإصلاح عميق للشعر المتضرر.', alt: 'وضع ماسك العناية على الشعر' },
-      { name: 'مكياج', desc: 'مكياج ناعم أو قوي، للنهار وللسهرات.', alt: 'تطبيق مكياج العيون' }
+      { name: 'مكياج احترافي', desc: 'مكياج يُجهَّز على مناسبتك وإضاءتها، ويثبت طوال اليوم.', alt: 'مكياج ناعم بإطلالة بورسلان مع تاج', items: ['مكياج عرائس', 'مكياج بورسلان', 'مكياج سهرة وخطوبة', 'مكياج يومي ناعم'] }
     ],
 
     'bridal.kicker': 'اختصاصنا',
@@ -149,12 +161,24 @@ const i18n = {
     'gallery.title': 'المعرض',
     'gallery.sub': 'من أعمال الصالون.',
     gallery: [
-      'ثلاثة أنواع شعر: ناعم، متموج، ومجعّد',
-      'شعر بني لامع بتموجات',
-      'تمشيط شعر متموج بعد الباليج',
-      'أدوات التصفيف: مقص وفرشاة وكتالوج ألوان',
-      'تسريحة عروس مضفّرة على شكل تاج مع طرحة',
-      'شعر طويل ناعم ولامع'
+      { cap: 'حمّامات كريم / ماسك', alt: 'ثلاثة أنواع شعر: ناعم، متموج، ومجعّد' },
+      { cap: 'تجفيف وتصفيف', alt: 'شعر بني لامع بتموجات' },
+      { cap: 'تلوين وصبغ الشعر', alt: 'مصففة تمشّط شعراً مموّجاً بأطراف كراميلية' },
+      { cap: 'تلوين وصبغ الشعر', alt: 'أدوات التصفيف: مقص وفرشاة وكتالوج ألوان' },
+      { cap: 'تجهيز العرائس', alt: 'تسريحة عروس مضفّرة على شكل تاج مع طرحة' },
+      { cap: 'علاج بالكيراتين', alt: 'شعر طويل ناعم ولامع' },
+      { cap: 'قصة على الطريقة التركية', alt: 'قصّة مدرّجة طويلة بلمعة كراميلية' },
+      { cap: 'قصة على الطريقة السورية', alt: 'قصّة مدرّجة بلون بني فاتح وكثافة ناعمة' },
+      { cap: 'قصة على الطريقة السورية', alt: 'قصّة مدرّجة بسشوار للداخل وكثافة عالية' },
+      { cap: 'هايلايت', alt: 'شعر طويل مموّج بخصل أشقر رمادي' },
+      { cap: 'أومبريه', alt: 'شعر بتدرّج من جذور داكنة إلى أطراف فاتحة' },
+      { cap: 'سومبريه', alt: 'تموجات بدرجة بيج بتدرّج ناعم جداً' },
+      { cap: 'خصل شقراء', alt: 'خصل شقراء تحيط بالوجه وتفتّح الإطلالة' },
+      { cap: 'مكياج عرائس', alt: 'عروس بتاج وطرحة ومكياج عيون لامع' },
+      { cap: 'مكياج عرائس', alt: 'تسريحة مرفوعة باللؤلؤ ومكياج بدرجات نود' },
+      { cap: 'مكياج بورسلان', alt: 'بشرة ناعمة مصقولة بإطلالة بورسلان' },
+      { cap: 'مكياج سهرة وخطوبة', alt: 'مكياج سهرة بظلال برونزية وعيون محدّدة' },
+      { cap: 'مكياج يومي ناعم', alt: 'مكياج يومي خفيف بدرجات طبيعية' }
     ],
 
     'booking.title': 'احجزي موعدك',
@@ -180,6 +204,8 @@ const i18n = {
     'contact.follow': 'تابعينا',
     'contact.instagram': 'تابعينا على إنستغرام',
     'contact.tiktok': 'تابعينا على تيك توك',
+    'contact.facebook': 'تابعينا على فيسبوك',
+    'contact.email': 'راسلينا عبر البريد الإلكتروني',
 
     'footer.rights': 'جميع الحقوق محفوظة.',
     'footer.logoAlt': 'شعار صالون هدى كولكل',
