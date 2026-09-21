@@ -317,13 +317,6 @@ a { color: var(--accent); }
   font-size: 0.9375rem;
 }
 
-.service-items {
-  display: block;
-  margin-top: 4px;
-  color: var(--ink-soft);
-  font-size: 0.875rem;
-}
-
 .service-arrow {
   color: var(--ink-soft);
   font-size: 1.25rem;
@@ -340,6 +333,58 @@ a { color: var(--accent); }
 .service-row:focus-visible .service-arrow { color: var(--accent); transform: translateX(4px); }
 [dir="rtl"] .service-row:hover .service-arrow,
 [dir="rtl"] .service-row:focus-visible .service-arrow { transform: scaleX(-1) translateX(4px); }
+
+/* A row with sub-services is a <details>: it opens in place instead of jumping to the form. */
+summary.service-row {
+  list-style: none;
+  cursor: pointer;
+}
+summary.service-row::-webkit-details-marker { display: none; }
+
+/* The caret turns instead of sliding — same selector weight as the hover rules above,
+   so source order decides. Color still comes from them. */
+.service-group .service-row .service-arrow,
+[dir="rtl"] .service-group .service-row .service-arrow { transform: none; }
+.service-group[open] .service-row .service-arrow,
+[dir="rtl"] .service-group[open] .service-row .service-arrow { transform: rotate(180deg); }
+
+.service-subs {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--pad) 24px;
+  /* Line the grid up with the row's text column: thumbnail + gap + page padding. */
+  padding-inline-start: calc(72px + 20px + var(--pad));
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (min-width: 900px) {
+  .service-subs {
+    grid-template-columns: repeat(4, 1fr);
+    padding-inline-start: calc(96px + 32px + var(--pad));
+  }
+}
+
+.service-subs a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+}
+.service-subs img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.service-subs span {
+  display: block;
+  padding-top: 8px;
+  font-size: 0.875rem;
+  transition: color 150ms ease;
+}
+.service-subs a:hover span,
+.service-subs a:focus-visible span { color: var(--accent); }
 
 /* Bridal preparation is the flagship — the only row set larger. */
 .service-row-featured img { width: 96px; height: 120px; }

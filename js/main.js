@@ -16,6 +16,14 @@ const GALLERY_IMAGES = [
   'g10', 'g11', 'g12', 'g13', 'g14', 'g15', 'g16', 'g17', 'g18'
 ];
 
+// Sub-service photos, keyed by index in services, in the same order as svc.items.
+// They reuse the gallery files — no separate thumbnails to keep in step.
+const SUB_IMAGES = {
+  1: ['g7', 'g8'],                    // Türk Stili, Suriye Stili
+  2: ['g10', 'g11', 'g12', 'g13'],    // Röfle, Ombre, Sombre, Sarı Hatlı
+  7: ['g14', 'g16', 'g17', 'g18']     // Gelin, Porselen, Gece / Nişan, Günlük / Soft
+};
+
 const waLink = (text) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 
 let lang = DEFAULT_LANG;
@@ -86,22 +94,58 @@ function renderServices(t) {
     const featured = i === 0;                   // bridal preparation is the flagship
     const li = document.createElement('li');
     li.className = 'reveal';
-    li.innerHTML = `
-      <a class="service-row${featured ? ' service-row-featured' : ''}" href="#booking">
+
+    const rowInner = `
         <img src="assets/img/${SERVICE_IMAGES[i]}.jpg" alt="" loading="lazy" width="800" height="1000">
         <span>
           ${featured ? '<span class="service-eyebrow"></span>' : ''}
           <span class="service-name"></span>
           <span class="service-desc"></span>
-          ${svc.items ? '<span class="service-items"></span>' : ''}
         </span>
-        <span class="service-arrow" aria-hidden="true">&rarr;</span>
-      </a>`;
+        <span class="service-arrow" aria-hidden="true">${svc.items ? '&#9662;' : '&rarr;'}</span>`;
+
+    if (svc.items) {
+      // Native <details> does the toggling, so there is no open/close JS — and a
+      // closed row never fetches its sub-service photos.
+      li.innerHTML = `
+      <details class="service-group">
+        <summary class="service-row">${rowInner}</summary>
+        <ul class="service-subs"></ul>
+      </details>`;
+    } else {
+      li.innerHTML = `
+      <a class="service-row${featured ? ' service-row-featured' : ''}" href="#booking">${rowInner}</a>`;
+      li.querySelector('.service-row').dataset.service = svc.name;
+    }
+
     li.querySelector('img').alt = svc.alt;
     li.querySelector('.service-name').textContent = svc.name;
     li.querySelector('.service-desc').textContent = svc.desc;
-    if (svc.items) li.querySelector('.service-items').textContent = svc.items.join(' · ');
     if (featured) li.querySelector('.service-eyebrow').textContent = t['services.featured'];
+
+    if (svc.items) {
+      const subs = li.querySelector('.service-subs');
+      svc.items.forEach((item, n) => {
+        const file = SUB_IMAGES[i][n];
+        const link = document.createElement('a');
+        link.href = '#booking';
+        link.dataset.service = `${svc.name} — ${item}`;
+        const img = document.createElement('img');
+        img.src = `assets/img/${file}.jpg`;
+        // The photo's own description, not the name repeated under it.
+        img.alt = t.gallery[GALLERY_IMAGES.indexOf(file)].alt;
+        img.loading = 'lazy';
+        img.width = 800;
+        img.height = 800;
+        const label = document.createElement('span');
+        label.textContent = item;
+        link.append(img, label);
+        const subLi = document.createElement('li');
+        subLi.appendChild(link);
+        subs.appendChild(subLi);
+      });
+    }
+
     list.appendChild(li);
 
     // A service with sub-services books the sub-service, not the category.
@@ -187,6 +231,12 @@ function init() {
       else delete document.documentElement.dataset.theme;
       syncThemeButton();
     }
+  });
+
+  // Delegated once here, not in renderServices — the list is rebuilt on every language switch.
+  document.getElementById('service-list').addEventListener('click', (e) => {
+    const el = e.target.closest('[data-service]');
+    if (el) document.getElementById('f-service').value = el.dataset.service;
   });
 
   document.getElementById('booking-form').addEventListener('submit', (e) => {
