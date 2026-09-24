@@ -141,6 +141,7 @@ function renderServices(t) {
         label.textContent = item;
         link.append(img, label);
         const subLi = document.createElement('li');
+        subLi.style.setProperty('--i', n);
         subLi.appendChild(link);
         subs.appendChild(subLi);
       });
@@ -168,7 +169,10 @@ function renderGallery(t) {
   GALLERY_IMAGES.forEach((name, i) => {
     const li = document.createElement('li');
     li.className = 'reveal';
+    li.style.setProperty('--i', i % 3);          // column position on the 3-up desktop grid
     const figure = document.createElement('figure');
+    const frame = document.createElement('div'); // clips the hover zoom to the rounded tile
+    frame.className = 'gallery-frame';
     const img = document.createElement('img');
     img.src = `assets/img/${name}.jpg`;
     img.alt = t.gallery[i].alt;
@@ -177,7 +181,8 @@ function renderGallery(t) {
     img.height = 800;
     const caption = document.createElement('figcaption');
     caption.textContent = t.gallery[i].cap;
-    figure.append(img, caption);
+    frame.appendChild(img);
+    figure.append(frame, caption);
     li.appendChild(figure);
     grid.appendChild(li);
   });
